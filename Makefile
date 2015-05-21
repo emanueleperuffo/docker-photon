@@ -1,4 +1,4 @@
-NAME = emanueleperuffo/openvpn-server
+NAME = emanueleperuffo/photon
 VERSION = 1
 
 .PHONY: all build test release
