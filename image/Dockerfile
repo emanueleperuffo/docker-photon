@@ -12,6 +12,8 @@ RUN /build/prepare.sh && \
 	/build/services.sh && \
 	/build/cleanup.sh
 
+VOLUME ["/home/photon/data"]
+
 EXPOSE 2322
 
 CMD ["/sbin/my_init"]

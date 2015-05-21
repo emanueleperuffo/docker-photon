@@ -2,5 +2,6 @@
 set -e
 
 gosu photon java -jar /home/photon/photon-${PHOTON_VERSION}.jar \
-	-nominatim-import -host ${PGHOST} -port 5432 -database nominatim -user ${PGUSER} \
+	-data-dir /home/photon/data \
+	-nominatim-import -host ${PGHOST} -user ${PGUSER} \
 	-languages it,en
