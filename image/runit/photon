@@ -1,7 +1,17 @@
 #!/bin/sh
 set -e
 
-gosu photon java -jar /home/photon/photon-${PHOTON_VERSION}.jar \
-	-data-dir /home/photon/data \
-	-nominatim-import -host ${PGHOST} -user ${PGUSER} \
-	-languages it,en
+chown -R photon:photon /var/db/photon
+
+BOOTSTRAPPED="/var/db/photon/.bootstrapped"
+
+if [ ! -e $BOOTSTRAPPED ]; then
+	gosu photon java -jar /usr/local/share/photon/photon.jar \
+		-data-dir /var/db/photon \
+		-nominatim-import -host ${PGHOST} -user ${PGUSER} \
+		-languages ${PHOTON_LANGUAGES}
+
+	touch $BOOTSTRAPPED
+fi
+
+gosu photon java -jar /usr/local/share/photon/photon.jar -data-dir /var/db/photon

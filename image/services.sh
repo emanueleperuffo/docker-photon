@@ -4,9 +4,10 @@ source /build/buildconfig
 set -x
 
 ## Downloading and extracting Photon
-groupadd photon && useradd -g photon photon -d /home/photon
-mkdir /home/photon && chown photon:photon /home/photon
-gosu photon curl http://photon.komoot.de/data/photon-${PHOTON_VERSION}.jar -o /home/photon/photon-${PHOTON_VERSION}.jar
+groupadd photon && useradd -g photon photon
+mkdir /var/db/photon && chown photon:photon /var/db/photon
+mkdir /usr/local/share/photon
+curl http://photon.komoot.de/data/photon-0.2.2.jar -o /usr/local/share/photon/photon.jar
 
 ## Activating Photon
 mkdir /etc/service/photon
